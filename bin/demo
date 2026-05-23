@@ -1,0 +1,21 @@
+#! /usr/bin/env bash
+
+set -o nounset
+set -o errexit
+set -o pipefail
+IFS=$'\n\t'
+
+port="${1:-3030}"
+
+rm -rf tmp/demo
+mkdir -p tmp/demo
+
+cp -r demo/ tmp/demo
+cp lib/*.js tmp/demo
+cp lib/stylesheets/*.css tmp/demo
+
+(
+  cd tmp/demo
+  open "http://localhost:$port"
+  ruby -run -e httpd . --port "$port"
+)

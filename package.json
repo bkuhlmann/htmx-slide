@@ -1,0 +1,40 @@
+{
+  "name": "htmx-slide",
+  "version": "0.0.0",
+  "description": "A htmx extension for slide show presentations using View Transitions.",
+  "type": "module",
+  "main": "build/htmx-slide.esm.js",
+  "style": "build/style.css",
+  "files": [
+    "build",
+    "README.adoc",
+    "CITATION.cff",
+    "LICENSE.adoc"
+  ],
+  "unpkg": "build/htmx-slide.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bkuhlmann/htmx-slide.git"
+  },
+  "keywords": [
+    "htmx",
+    "extension",
+    "slide",
+    "presentation"
+  ],
+  "author": "Brooke Kuhlmann",
+  "license": "Hippocratic-2.1",
+  "bugs": {
+    "url": "https://github.com/bkuhlmann/htmx-slide/issues"
+  },
+  "funding": {
+    "url": "https://github.com/sponsors/bkuhlmann"
+  },
+  "homepage": "https://alchemists.io/projects/htmx-slide",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "esbuild": "^0.27.2",
+    "eslint": "^10.4.0",
+    "globals": "^17.3.0"
+  }
+}
