@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="viewport">
+    <img id="slide" src="clock.svg" alt="Clock" class="slide" width="480" height="480">
+  </div>
+
+  <progress id="progress" class="progress" value="2" max="2"></progress>
+
+  <div id="actions" class="actions">
+    <a href="_two.html"
+       class="action"
+       data-direction="backward"
+       hx-get="_two.html"
+       hx-trigger="click, keyup[key=='ArrowLeft'] from:body"
+       hx-push_url="true">Previous</a>
+
+    <span class="status">3 of 3</span>
+
+    <a href="_one.html"
+       class="action"
+       data-direction="forward"
+       hx-get="_one.html"
+       hx-trigger="click, keyup[key=='ArrowRight'] from:body"
+       hx-push_url="true">Next</a>
+
+    <a href="_one.html"
+       class="action"
+       data-direction="backward"
+       hx-get="_one.html"
+       hx-trigger="click, keyup[key=='['] from:body"
+       hx-push_url="true">First</a>
+
+    <button data-fullscreen-trigger>[ ]</button>
+
+    <a href="_three.html"
+       class="action"
+       data-direction="forward"
+       hx-get="_three.html"
+       hx-trigger="click, keyup[key==']'] from:body"
+       hx-push_url="true">Last</a>
+</div>

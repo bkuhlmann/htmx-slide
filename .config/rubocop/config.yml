@@ -1,2 +1,7 @@
 inherit_gem:
   caliber: config/all.yml
+
+RSpec/ExampleLength:
+  Exclude:
+    - "spec/lib/demo_spec.rb"
+

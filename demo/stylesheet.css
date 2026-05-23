@@ -1,0 +1,69 @@
+:where(a) {
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-position: under;
+  }
+}
+
+:where(button), input:where([type="submit"], [type="reset"], [type="button"]) {
+  background: CanvasText;
+  color: Canvas;
+  border: 0.1rem solid transparent;
+}
+
+:where(button, input, select, textarea) {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.page {
+  --color-white: hsl(0, 0%, 100%);
+  --font-family: Verdana;
+
+  align-items: center;
+  background-image: linear-gradient(
+    0deg,
+    hsl(212deg 84% 48%) 0%,
+    hsl(206deg 100% 45%) 8%,
+    hsl(203deg 100% 45%) 16%,
+    hsl(200deg 100% 45%) 23%,
+    hsl(197deg 100% 45%) 31%,
+    hsl(194deg 100% 45%) 39%,
+    hsl(195deg 75% 55%) 46%,
+    hsl(196deg 75% 63%) 54%,
+    hsl(197deg 76% 69%) 63%,
+    hsl(197deg 78% 74%) 71%,
+    hsl(198deg 81% 79%) 80%,
+    hsl(198deg 86% 84%) 90%,
+    hsl(198deg 97% 88%) 100%
+  );
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family);
+  justify-content: center;
+  height: 100vh;
+
+  .header {
+    margin-bottom: 1rem;
+  }
+
+  .body {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .versions {
+    align-items: center;
+    border-radius: 0.5rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .version {
+    margin: 0;
+  }
+}
