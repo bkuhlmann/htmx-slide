@@ -1,0 +1,24 @@
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-group(htmx-slide-left),
+  ::view-transition-group(htmx-slide-right) {
+    animation-duration: 0.8s;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  ::view-transition-new(htmx-slide-left) {
+    animation-name: htmxSlideInFromRight;
+  }
+
+  ::view-transition-old(htmx-slide-left) {
+    animation-name: htmxSlideOutToLeft;
+  }
+
+  ::view-transition-new(htmx-slide-right) {
+    animation-name: htmxSlideInFromLeft;
+  }
+
+  ::view-transition-old(htmx-slide-right) {
+    animation-name: htmxSlideOutToRight;
+  }
+}
