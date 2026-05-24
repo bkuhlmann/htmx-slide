@@ -3,20 +3,26 @@
 :figure-caption!:
 
 :htmx_link: link:https://htmx.org[htmx]
+:fullscreen_api_link: link:https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API[Fullscreen API]
+:htmx_view_transitions_link: link:https://alchemists.io/articles/htmx_view_transitions[htmx View Transitions]
 
 = htmx Slide
 
-This library is a {htmx_link} link:https://htmx.org/extensions[extension] that can be used for rendering slidedhows.
+This library is a {htmx_link} link:https://htmx.org/extensions[extension] for rendering slides.
 
 toc::[]
 
 == Features
 
-* Allows you to render slideshows with View Transitions.
+* Allows you to render slides with silky smooth CSS View Transitions.
+* Provides keyboard shortcuts.
+* Provides next, previous, last, and first slide transitions.
+* Provides full screen toggling of your presentation.
+* Works with dynamic or statically generated web sites.
 
 == Screencasts
 
-video::https://alchemists.io/videos/projects/htmx-slide/demo.mp4[poster=https://alchemists.io/images/projects/htmx-slide/demo.png,width=790,height=508,role=focal_point]
+video::https://alchemists.io/videos/projects/htmx-slide/demo.mp4[poster=https://alchemists.io/images/projects/htmx-slide/demo.webp,width=780,height=858,role=focal_point]
 
 == Requirements
 
@@ -28,12 +34,14 @@ video::https://alchemists.io/videos/projects/htmx-slide/demo.mp4[poster=https://
 
 The following _assumes_ you are already using {htmx_link} and have it configured in the same manner as documented in this setup section.
 
-To use via the HTML `script` element, add the following to your layout:
+To load CSS and JavaScript, add the following to your page:
 
 [source,html]
 ----
+<link href="https://unpkg.com/htmx-slide@latest/build/style.css" rel="stylesheet">
+
 <script src="https://unpkg.com/htmx-slide@latest"
-        integrity="sha384-m5FEt832hzXVEPKT4pjAfi1eiFHSXKZDpsPOCzBOLmd9ycRm+QAIFU+/CZflfRyq"
+        integrity="sha384-kW7IPCYLtM0LPnNd0hhzXbSjutJnlfSXEmvM8zbLx1maZly0KwK/+KGqqlX2ZC4X"
         crossorigin="anonymous">
 </script>
 ----
@@ -42,6 +50,8 @@ To use via Import Maps, add the following to your layout:
 
 [source,html]
 ----
+<link href="https://unpkg.com/htmx-slide@latest/build/style.css" rel="stylesheet">
+
 <script type="importmap">
   {
     "imports": {
@@ -66,16 +76,111 @@ Once the library is installed, you only need to import it:
 
 [source,js]
 ----
+import "htmx-slide/build/style.css";
 import "htmx-slide";
 ----
 
 == Usage
 
-To use, implement a select element with option values that provide URLs to templates or partials. Example:
+To use, add a top-level element (`section` in this case) where you enable the `slide` extension. Once the extension has been able, you can then add your view port, progress bar, and actions.  Example:
 
 [source,html]
 ----
+<section class="htmx-slide"
+         hx-select-oob="#slide, #progress, #actions"
+         hx-swap="transition:true"
+         hx-ext="slide">
+
+   <div class="container">
+     <div class="viewport">
+       <img id="slide" src="alien.svg" alt="One" class="slide" width="480" height="480">
+     </div>
+
+     <progress id="progress" class="progress" value="0" max="2"></progress>
+
+     <div id="actions" class="actions">
+       <a href="_three.html"
+          class="action"
+          data-direction="backward"
+          hx-get="_three.html"
+          hx-trigger="click, keyup[key=='ArrowLeft'] from:body"
+          hx-push_url="true">Previous</a>
+
+       <span class="status">1 of 3</span>
+
+       <a href="_two.html"
+          class="action"
+          data-direction="forward"
+          hx-get="_two.html"
+          hx-trigger="click, keyup[key=='ArrowRight'] from:body"
+          hx-push_url="true">Next</a>
+
+       <a href="_one.html"
+          class="action"
+          data-direction="backward"
+          hx-get="_one.html"
+          hx-trigger="click, keyup[key=='['] from:body"
+          hx-push_url="true">First</a>
+
+       <button data-fullscreen-trigger>[ ]</button>
+
+       <a href="_three.html"
+          class="action"
+          data-direction="forward"
+          hx-get="_three.html"
+          hx-trigger="click, keyup[key==']'] from:body"
+          hx-push_url="true">Last</a>
+   </div>
+</section>
 ----
+
+The above is the minimum to load the extension, the initial slide, and link to further slides. Here's the breakdown:
+
+* `section` (required): The `section` element provides a semantic way to enable the extension and supply the minimum attributes. You're not limited to the `section` element as any valid HTML element would work for your top level element.
+** `class` (optional): Necessary to style the extension. If you don't want to use the default styles then you can remove along with the associated `style.css`. The `style.css` is compiled from the style sheets located in the `lib/stylesheets` of this project. If you need a detailed breakdown on how CSS View Transitions and key frames work, check out the {htmx_view_transitions_link} article to learn more.
+** `hx-select-oob` (optional): Allows you to define which elements should be selected as out of bounds updates when moving forward and backward through your slides since only the slide, progress, and action elements are the only elements that will change per each slide. The values _must_ be IDs, not classes.
+** `hx-swap` (required): Ensures htmx enables CSS View Transitions properly. If missing, no transitions will fire.
+** `hx-ext` (required): Ensures this extension is enabled.
+* `.container` (required): Ensures the view port, progress bar, and associated actions don't expand the width of your slides.
+* `.viewport` (required): Ensures contents of this element can be toggled via the {fullscreen_api_link}.
+* `#slide` (required): Ensures this can be updated (swapped) out of bounds.
+* `#progresss` (optional): Provides real-time progress. Delete and remove from `hx-select-oob` if not desired.
+* `#actions` (required): Ensure you can navigate to the next, previous, first, and last slide. You can add or remove actions as desired. The above shows what's possible. When using action links, use the following attributes:
+** `.action` (optional): Allows you to style the action if desired.
+** `data-direction` (required): Ensures this extension knows which direction transition the slide depending on direction. Valid values are: `forward` or `backward`.
+** `hx-get` (required): Gets the next slide.
+** `hx-trigger`(required): Triggers the action. Feel free to customize keyboard short behavior as desired.
+** `hx-push_url` (required): Ensures your browser history is always updated so the browser back and forward navigation always works.
+* `data-fullscreen-trigger` (optional): Triggers full screen mode. The value is meant to be empty. If a value is supplied, it'll be ignored. You can, optionally, add a `data-fullscreen-target` with any valid CSS selector in case you want to target a different element for full screen toggle. The default is: `.viewport`.
+
+In addition to the above, you can also add the following data attributes and enabling this extension. Example:
+
+[source,html]
+----
+<section hx-ext="slide"
+         data-slide=".slide"
+         data-classes-left="htmx-slide-left"
+         data-classes-right="htmx-slide-right"
+         data-fullscreen-key="f"
+         data-fullscreen-trigger="[data-fullscreen-trigger]">
+----
+
+The above shows the default settings which is why you don't need to supply these when enabling this extension. Should the above defaults not be desired, then you can customize as follows:
+
+* `data-slide`: Use any valid CSS selector to target a different slide element.
+* `data-classes-left`: The CSS class associated your CSS View Transition and animation for leftward movement.
+* `data-classes-right`: The CSS class associated your CSS View Transition and animation for rightward movement.
+* `data-fullscreen-key`: The fullscreen keyboard shortcut.
+* `data-fullscreen-trigger`: The element which triggers the full screen toggle (usually a button).
+
+When building your implementation, the above shows the initial page to render. All subsequent pages only need to be HTML fragments/partials which have the elements shown in the `.container` as those are the only elements that need to change upon each HTTP GET request.
+
+== Examples
+
+Should you need real-word examples of this extension in production use, check out the following:
+
+* link:https://alchemists.io/talks[Alchemists Talks]: A collection of talks (and associated slides) given at past presentations.
+* link:https://alchemists.io/projects/terminus[Terminus]: A Hanami + htmx application for ePaper devices. Each playlist uses this extension for viewing screens rendered on your ePaper devices.
 
 == Development
 
@@ -112,7 +217,7 @@ To test, run:
 
 [source,bash]
 ----
-bin/rake
+ bin/rake
 ----
 
 == Deployment
