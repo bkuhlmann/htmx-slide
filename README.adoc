@@ -15,10 +15,10 @@ toc::[]
 == Features
 
 * Allows you to render slides with silky smooth CSS View Transitions.
-* Provides keyboard shortcuts.
-* Provides next, previous, last, and first slide transitions.
+* Provides slide transitions.
 * Provides full screen toggling of your presentation.
-* Works with dynamic or statically generated web sites.
+* Provides keyboard shortcuts.
+* Works with dynamically or statically generated web sites.
 
 == Screencasts
 
@@ -41,8 +41,9 @@ To load CSS and JavaScript, add the following to your page:
 <link href="https://unpkg.com/htmx-slide@latest/build/style.css" rel="stylesheet">
 
 <script src="https://unpkg.com/htmx-slide@latest"
-        integrity="sha384-kW7IPCYLtM0LPnNd0hhzXbSjutJnlfSXEmvM8zbLx1maZly0KwK/+KGqqlX2ZC4X"
-        crossorigin="anonymous">
+        integrity="sha384-U/fGmNqBsxEukNweTLA6XTbpu048tuE/de7bAwuo5E0OS91fd6YcCIk7IhKkQ/US"
+        crossorigin="anonymous"
+        defer>
 </script>
 ----
 
@@ -82,14 +83,14 @@ import "htmx-slide";
 
 == Usage
 
-To use, add a top-level element (`section` in this case) where you enable the `slide` extension. Once the extension has been able, you can then add your view port, progress bar, and actions.  Example:
+To use, add a top-level element (`section` in this case) where you enable the `slide` extension. Once the extension has been enabled, you can then add your view port, progress bar, and actions.  Example:
 
 [source,html]
 ----
 <section class="htmx-slide"
+         hx-ext="slide"
          hx-select-oob="#slide, #progress, #actions"
-         hx-swap="transition:true"
-         hx-ext="slide">
+         hx-swap="transition:true">
 
    <div class="container">
      <div class="viewport">
@@ -138,22 +139,22 @@ The above is the minimum to load the extension, the initial slide, and link to f
 
 * `section` (required): The `section` element provides a semantic way to enable the extension and supply the minimum attributes. You're not limited to the `section` element as any valid HTML element would work for your top level element.
 ** `class` (optional): Necessary to style the extension. If you don't want to use the default styles then you can remove along with the associated `style.css`. The `style.css` is compiled from the style sheets located in the `lib/stylesheets` of this project. If you need a detailed breakdown on how CSS View Transitions and key frames work, check out the {htmx_view_transitions_link} article to learn more.
+** `hx-ext` (required): Ensures this extension is enabled.
 ** `hx-select-oob` (optional): Allows you to define which elements should be selected as out of bounds updates when moving forward and backward through your slides since only the slide, progress, and action elements are the only elements that will change per each slide. The values _must_ be IDs, not classes.
 ** `hx-swap` (required): Ensures htmx enables CSS View Transitions properly. If missing, no transitions will fire.
-** `hx-ext` (required): Ensures this extension is enabled.
 * `.container` (required): Ensures the view port, progress bar, and associated actions don't expand the width of your slides.
 * `.viewport` (required): Ensures contents of this element can be toggled via the {fullscreen_api_link}.
 * `#slide` (required): Ensures this can be updated (swapped) out of bounds.
 * `#progresss` (optional): Provides real-time progress. Delete and remove from `hx-select-oob` if not desired.
-* `#actions` (required): Ensure you can navigate to the next, previous, first, and last slide. You can add or remove actions as desired. The above shows what's possible. When using action links, use the following attributes:
+* `#actions` (required): Ensure you can navigate to the previous, next, first, and last slide. You can add or remove actions as desired. The above shows what's possible. When using action links, use the following attributes:
 ** `.action` (optional): Allows you to style the action if desired.
-** `data-direction` (required): Ensures this extension knows which direction transition the slide depending on direction. Valid values are: `forward` or `backward`.
+** `data-direction` (required): Ensures this extension knows which direction to transition the slide based on action. Valid values are: `forward` or `backward`.
 ** `hx-get` (required): Gets the next slide.
 ** `hx-trigger`(required): Triggers the action. Feel free to customize keyboard short behavior as desired.
-** `hx-push_url` (required): Ensures your browser history is always updated so the browser back and forward navigation always works.
-* `data-fullscreen-trigger` (optional): Triggers full screen mode. The value is meant to be empty. If a value is supplied, it'll be ignored. You can, optionally, add a `data-fullscreen-target` with any valid CSS selector in case you want to target a different element for full screen toggle. The default is: `.viewport`.
+** `hx-push_url` (required): Ensures your browser history is always updated so the browser back and forward navigation works.
+* `data-fullscreen-trigger` (required): Triggers full screen mode. The value is meant to be empty. If a value is supplied, it'll be ignored. You can, optionally, add a `data-fullscreen-target` with any valid CSS selector in case you want to target a different element for full screen. The default is: `.viewport`.
 
-In addition to the above, you can also add the following data attributes and enabling this extension. Example:
+In addition to the above, you can also add the following data attributes when enabling this extension. Example:
 
 [source,html]
 ----
