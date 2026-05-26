@@ -30,7 +30,28 @@
   }
 
   .progress {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: black;
+    border-radius: 0.5rem;
+    border: none;
+    height: 0.6rem;
     width: 100%;
+
+    &::-webkit-progress-bar {
+      background-color: black;
+      border-radius: 0.5rem;
+    }
+
+    &::-moz-progress-bar {
+      background-color: green;
+      border-radius: 0.5rem;
+    }
+
+    &::-webkit-progress-value {
+      background-color: green;
+      border-radius: 0.5rem;
+    }
   }
 
   .status {
