@@ -26,13 +26,13 @@
 
     <main class="body">
       <section class="htmx-slide"
+               hx-ext="slide"
                hx-select-oob="#slide, #progress, #actions"
-               hx-swap="transition:true"
-               hx-ext="slide">
+               hx-swap="transition:true">
 
          <div class="container">
            <div class="viewport">
-             <img id="slide" src="alien.svg" alt="One" class="slide" width="480" height="480">
+             <img id="slide" src="alien.svg" alt="Alien" class="slide" width="480" height="480">
            </div>
 
            <progress id="progress" class="progress" value="0" max="2"></progress>
