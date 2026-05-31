@@ -12,6 +12,8 @@
   }
 
   .viewport:fullscreen {
+    cursor: none;
+
     .slide {
       border-radius: 0;
       box-shadow: none;
@@ -19,7 +21,7 @@
   }
 
   .slide {
-    border-radius: 0.5rem;
+    border-radius: 0.5rem 0.5rem 0 0;
     box-shadow:
       0.7px 0.7px 0.7px rgba(0, 0, 0, 0.022),
       1.7px 1.7px 1.7px rgba(0, 0, 0, 0.031),
@@ -33,24 +35,24 @@
     -webkit-appearance: none;
     appearance: none;
     background-color: black;
-    border-radius: 0.5rem;
+    border-radius: 0 0 0.4rem 0.4rem;
     border: none;
-    height: 0.6rem;
+    height: 0.5rem;
     width: 100%;
 
     &::-webkit-progress-bar {
       background-color: black;
-      border-radius: 0.5rem;
+      border-radius: 0 0 0.4rem 0.4rem;
     }
 
     &::-moz-progress-bar {
       background-color: green;
-      border-radius: 0.5rem;
+      border-radius: 0 0 0.4rem 0.4rem;
     }
 
     &::-webkit-progress-value {
       background-color: green;
-      border-radius: 0.5rem;
+      border-radius: 0 0 0.4rem 0.4rem;
     }
   }
 
