@@ -8,15 +8,10 @@
   }
 }
 
-:where(button), input:where([type="submit"], [type="reset"], [type="button"]) {
+:where(button) {
   background: CanvasText;
-  color: Canvas;
   border: 0.1rem solid transparent;
-}
-
-:where(button, input, select, textarea) {
-  font-family: inherit;
-  font-size: inherit;
+  color: Canvas;
 }
 
 .page {
@@ -49,21 +44,5 @@
 
   .header {
     margin-bottom: 1rem;
-  }
-
-  .body {
-    align-items: center;
-    display: flex;
-    gap: 1rem;
-  }
-
-  .versions {
-    align-items: center;
-    border-radius: 0.5rem;
-    padding: 0.2rem 0.5rem;
-  }
-
-  .version {
-    margin: 0;
   }
 }
