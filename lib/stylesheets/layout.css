@@ -82,11 +82,3 @@
     }
   }
 }
-
-.htmx-slide-left {
-  view-transition-name: htmx-slide-left;
-}
-
-.htmx-slide-right {
-  view-transition-name: htmx-slide-right;
-}
