@@ -1,4 +1,52 @@
 @media (prefers-reduced-motion: no-preference) {
+  /* Curtain */
+
+  ::view-transition-group(htmx-slide-curtain-forward),
+  ::view-transition-group(htmx-slide-curtain-backward) {
+    animation-duration: 500ms;
+  }
+
+  ::view-transition-old(htmx-slide-curtain-forward) {
+    animation-name: htmx-slide-curtain-close;
+  }
+
+  ::view-transition-new(htmx-slide-curtain-forward) {
+    animation: none;
+  }
+
+  ::view-transition-old(htmx-slide-curtain-backward) {
+    animation: none;
+  }
+
+  ::view-transition-new(htmx-slide-curtain-backward) {
+    animation-name: htmx-slide-curtain-open;
+  }
+
+  /* Iris */
+
+  ::view-transition-group(htmx-slide-iris-forward),
+  ::view-transition-group(htmx-slide-iris-backward) {
+    animation-duration: 1s;
+  }
+
+  ::view-transition-old(htmx-slide-iris-forward) {
+    animation-name: htmx-slide-iris-close;
+  }
+
+  ::view-transition-new(htmx-slide-iris-forward) {
+    animation: none;
+  }
+
+  ::view-transition-old(htmx-slide-iris-backward) {
+    animation: none;
+  }
+
+  ::view-transition-new(htmx-slide-iris-backward) {
+    animation-name: htmx-slide-iris-open;
+  }
+
+  /* Push */
+
   ::view-transition-group(htmx-slide-push-forward),
   ::view-transition-group(htmx-slide-push-backward) {
     animation-duration: 0.8s;
@@ -20,5 +68,51 @@
 
   ::view-transition-new(htmx-slide-push-backward) {
     animation-name: htmx-slide-push-in-from-left;
+  }
+
+  /* Scale */
+
+  ::view-transition-group(htmx-slide-scale-forward),
+  ::view-transition-group(htmx-slide-scale-backward) {
+    animation-duration: 0.8s;
+  }
+
+  ::view-transition-old(htmx-slide-scale-forward) {
+    animation-name: htmx-slide-scale-down;
+  }
+
+  ::view-transition-new(htmx-slide-scale-forward) {
+    animation: none;
+  }
+
+  ::view-transition-old(htmx-slide-scale-backward) {
+    animation: none;
+  }
+
+  ::view-transition-new(htmx-slide-scale-backward) {
+    animation-name: htmx-slide-scale-up;
+  }
+
+  /* Wipe */
+
+  ::view-transition-group(htmx-slide-wipe-forward),
+  ::view-transition-group(htmx-slide-wipe-backward) {
+    animation-duration: 1s;
+  }
+
+  ::view-transition-old(htmx-slide-wipe-forward) {
+    animation-name: htmx-slide-wipe-out-to-left;
+  }
+
+  ::view-transition-new(htmx-slide-wipe-forward) {
+    animation-name: htmx-slide-wipe-in-from-right;
+  }
+
+  ::view-transition-old(htmx-slide-wipe-backward) {
+    animation-name: htmx-slide-wipe-out-to-right;
+  }
+
+  ::view-transition-new(htmx-slide-wipe-backward) {
+    animation-name: htmx-slide-wipe-in-from-left;
   }
 }

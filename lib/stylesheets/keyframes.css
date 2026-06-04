@@ -17,3 +17,65 @@
   from { transform: translateX(-100%); }
   to { transform: translateX(0); }
 }
+
+@keyframes htmx-slide-curtain-open {
+  from { clip-path: inset(0 50% 0 50%); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes htmx-slide-curtain-close {
+  from { clip-path: inset(0 0 0 0); }
+  to { clip-path: inset(0 50% 0 50%); }
+}
+
+@keyframes htmx-slide-iris-open {
+  from { clip-path: circle(0% at 50% 50%); }
+  to { clip-path: circle(150% at 50% 50%); }
+}
+
+@keyframes htmx-slide-iris-close {
+  from { clip-path: circle(150% at 50% 50%); }
+  to { clip-path: circle(0% at 50% 50%); }
+}
+
+@keyframes htmx-slide-scale-down {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes htmx-slide-scale-up {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes htmx-slide-wipe-in-from-right {
+  from { clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%); }
+  to { clip-path: polygon(0% 0%,   100% 0%, 100% 100%, 0% 100%); }
+}
+
+@keyframes htmx-slide-wipe-out-to-left {
+  from { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
+  to { clip-path: polygon(0% 0%, 0% 0%,   0% 100%,   0% 100%); }
+}
+
+@keyframes htmx-slide-wipe-in-from-left {
+  from { clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%); }
+  to { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
+}
+
+@keyframes htmx-slide-wipe-out-to-right {
+  from { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
+  to { clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%); }
+}
