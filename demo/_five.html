@@ -1,30 +1,30 @@
 <img id="slide"
-     src="two.svg"
-     alt="Two"
+     src="five.svg"
+     alt="Five"
      class="slide"
      width="960"
      height="540"
-     data-transitions-forward="curtain"
-     data-transitions-backward="push">
+     data-transitions-forward="wipe"
+     data-transitions-backward="scale">
 
-<progress id="progress" class="progress" value="1" max="4"></progress>
+<progress id="progress" class="progress" value="4" max="4"></progress>
 
 <div id="actions" class="actions">
-  <a href="_one.html"
+  <a href="_four.html"
       class="action"
       data-direction="backward"
-      hx-get="_one.html"
+      hx-get="_four.html"
       hx-trigger="click, keyup[key=='ArrowLeft'] from:body"
       hx-push_url="true">
      Previous
   </a>
 
-  <span class="status">2 of 5</span>
+  <span class="status">5 of 5</span>
 
-  <a href="_three.html"
+  <a href="_one.html"
       class="action"
       data-direction="forward"
-      hx-get="_three.html"
+      hx-get="_one.html"
       hx-trigger="click, keyup[key=='ArrowRight'] from:body"
       hx-push_url="true">
      Next

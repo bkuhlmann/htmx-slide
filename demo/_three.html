@@ -1,40 +1,52 @@
-<div class="container">
-  <div class="viewport">
-    <img id="slide" src="three.svg" alt="Three" class="slide" width="960" height="540">
-  </div>
+<img id="slide"
+     src="three.svg"
+     alt="Three"
+     class="slide"
+     width="960"
+     height="540"
+     data-transitions-forward="iris"
+     data-transitions-backward="curtain">
 
-  <progress id="progress" class="progress" value="2" max="2"></progress>
+<progress id="progress" class="progress" value="2" max="4"></progress>
 
-  <div id="actions" class="actions">
-    <a href="_two.html"
-       class="action"
-       data-direction="backward"
-       hx-get="_two.html"
-       hx-trigger="click, keyup[key=='ArrowLeft'] from:body"
-       hx-push_url="true">Previous</a>
+<div id="actions" class="actions">
+  <a href="_two.html"
+      class="action"
+      data-direction="backward"
+      hx-get="_two.html"
+      hx-trigger="click, keyup[key=='ArrowLeft'] from:body"
+      hx-push_url="true">
+     Previous
+  </a>
 
-    <span class="status">3 of 3</span>
+  <span class="status">3 of 5</span>
 
-    <a href="_one.html"
-       class="action"
-       data-direction="forward"
-       hx-get="_one.html"
-       hx-trigger="click, keyup[key=='ArrowRight'] from:body"
-       hx-push_url="true">Next</a>
+  <a href="_four.html"
+      class="action"
+      data-direction="forward"
+      hx-get="_four.html"
+      hx-trigger="click, keyup[key=='ArrowRight'] from:body"
+      hx-push_url="true">
+     Next
+  </a>
 
-    <a href="_one.html"
-       class="action"
-       data-direction="backward"
-       hx-get="_one.html"
-       hx-trigger="click, keyup[key=='['] from:body"
-       hx-push_url="true">First</a>
+  <a href="_one.html"
+      class="action"
+      data-direction="backward"
+      hx-get="_one.html"
+      hx-trigger="click, keyup[key=='['] from:body"
+      hx-push_url="true">
+     First
+  </a>
 
-    <button data-fullscreen-trigger>[ ]</button>
+  <button data-fullscreen-trigger>[ ]</button>
 
-    <a href="_three.html"
-       class="action"
-       data-direction="forward"
-       hx-get="_three.html"
-       hx-trigger="click, keyup[key==']'] from:body"
-       hx-push_url="true">Last</a>
+  <a href="_five.html"
+      class="action"
+      data-direction="forward"
+      hx-get="_five.html"
+      hx-trigger="click, keyup[key==']'] from:body"
+      hx-push_url="true">
+     Last
+  </a>
 </div>

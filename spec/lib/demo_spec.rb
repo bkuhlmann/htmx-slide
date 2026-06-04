@@ -56,47 +56,47 @@ RSpec.describe "Demo", :js do
     visit "/index.html"
 
     expect(page).to have_css(%(#progress[value="0"]))
-    expect(page).to have_css(%(#progress[max="2"]))
-    expect(page).to have_text("1 of 3")
+    expect(page).to have_css(%(#progress[max="4"]))
+    expect(page).to have_text("1 of 5")
 
     click_link "Next"
 
     expect(page).to have_css(%(#progress[value="1"]))
-    expect(page).to have_text("2 of 3")
+    expect(page).to have_text("2 of 5")
 
     find("body").send_keys :right
 
     expect(page).to have_css(%(#progress[value="2"]))
-    expect(page).to have_text("3 of 3")
+    expect(page).to have_text("3 of 5")
 
     click_link "Previous"
 
     expect(page).to have_css(%(#progress[value="1"]))
-    expect(page).to have_text("2 of 3")
+    expect(page).to have_text("2 of 5")
 
     find("body").send_keys :left
 
     expect(page).to have_css(%(#progress[value="0"]))
-    expect(page).to have_text("1 of 3")
+    expect(page).to have_text("1 of 5")
 
     click_link "First"
 
     expect(page).to have_css(%(#progress[value="0"]))
-    expect(page).to have_text("1 of 3")
+    expect(page).to have_text("1 of 5")
 
     click_link "Last"
 
-    expect(page).to have_css(%(#progress[value="2"]))
-    expect(page).to have_text("3 of 3")
+    expect(page).to have_css(%(#progress[value="4"]))
+    expect(page).to have_text("5 of 5")
 
     find("body").send_keys "["
 
     expect(page).to have_css(%(#progress[value="0"]))
-    expect(page).to have_text("1 of 3")
+    expect(page).to have_text("1 of 5")
 
     find("body").send_keys "]"
 
-    expect(page).to have_css(%(#progress[value="2"]))
-    expect(page).to have_text("3 of 3")
+    expect(page).to have_css(%(#progress[value="4"]))
+    expect(page).to have_text("5 of 5")
   end
 end
