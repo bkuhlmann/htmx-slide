@@ -17,6 +17,9 @@
     .slide {
       border-radius: 0;
       box-shadow: none;
+      height: 100vh;
+      object-fit: contain;
+      width: 100vw;
     }
   }
 
