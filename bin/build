@@ -40,7 +40,8 @@ integrity="$(openssl dgst -sha384 -binary < "$path" | openssl base64 -A)"
 cat << SCRIPT
 <script src="$cdn"
         integrity="sha384-$integrity"
-        crossorigin="anonymous">
+        crossorigin="anonymous"
+        defer>
 </script>
 SCRIPT
 
