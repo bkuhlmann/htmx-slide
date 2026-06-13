@@ -43,7 +43,7 @@ To load CSS and JavaScript, add the following to your page:
 <link href="https://unpkg.com/htmx-slide@latest/build/style.css" rel="stylesheet">
 
 <script src="https://unpkg.com/htmx-slide@latest"
-        integrity="sha384-HyhdAksJVbHCQ3B5nJxkRc/5e+ZypMRvklhkwsDR563ufNJ7avuG0M7DdEI32WLn"
+        integrity="sha384-fScIyPEy6OzOa5PnWzBtl662obABP840cxSPq0o1LD66Iz6CmreHu/K3kpcKNBut"
         crossorigin="anonymous"
         defer>
 </script>
