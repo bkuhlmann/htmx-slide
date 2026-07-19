@@ -50,7 +50,7 @@
   ::view-transition-group(htmx-slide-push-forward),
   ::view-transition-group(htmx-slide-push-backward) {
     animation-duration: 0.8s;
-    border-radius: 0.5rem;
+    border-radius: 0.5rem 0.5rem 0 0;
     overflow: hidden;
   }
 
