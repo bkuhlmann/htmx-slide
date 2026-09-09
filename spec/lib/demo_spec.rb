@@ -17,7 +17,7 @@ RSpec.describe "Demo", :js do
 
   before do
     app_path.rmtree.mkpath
-    Bundler.root.join("demo").files.each { |path| path.copy app_path }
+    Bundler.root.join("demo").files.each { it.copy app_path }
     Bundler.root.join("lib/htmx-slide.js").copy app_path
     Capybara.app = app
   end
@@ -55,48 +55,48 @@ RSpec.describe "Demo", :js do
   it "plays slideshow", :aggregate_failures do
     visit "/index.html"
 
-    expect(page).to have_css(%(#progress[value="0"]))
-    expect(page).to have_css(%(#progress[max="4"]))
+    expect(page).to have_css(%(.progress[value="0"]))
+    expect(page).to have_css(%(.progress[max="4"]))
     expect(page).to have_text("1 of 5")
 
     click_link "Next"
 
-    expect(page).to have_css(%(#progress[value="1"]))
+    expect(page).to have_css(%(.progress[value="1"]))
     expect(page).to have_text("2 of 5")
 
     find("body").send_keys :right
 
-    expect(page).to have_css(%(#progress[value="2"]))
+    expect(page).to have_css(%(.progress[value="2"]))
     expect(page).to have_text("3 of 5")
 
     click_link "Previous"
 
-    expect(page).to have_css(%(#progress[value="1"]))
+    expect(page).to have_css(%(.progress[value="1"]))
     expect(page).to have_text("2 of 5")
 
     find("body").send_keys :left
 
-    expect(page).to have_css(%(#progress[value="0"]))
+    expect(page).to have_css(%(.progress[value="0"]))
     expect(page).to have_text("1 of 5")
 
     click_link "First"
 
-    expect(page).to have_css(%(#progress[value="0"]))
+    expect(page).to have_css(%(.progress[value="0"]))
     expect(page).to have_text("1 of 5")
 
     click_link "Last"
 
-    expect(page).to have_css(%(#progress[value="4"]))
+    expect(page).to have_css(%(.progress[value="4"]))
     expect(page).to have_text("5 of 5")
 
     find("body").send_keys "["
 
-    expect(page).to have_css(%(#progress[value="0"]))
+    expect(page).to have_css(%(.progress[value="0"]))
     expect(page).to have_text("1 of 5")
 
     find("body").send_keys "]"
 
-    expect(page).to have_css(%(#progress[value="4"]))
+    expect(page).to have_css(%(.progress[value="4"]))
     expect(page).to have_text("5 of 5")
   end
 end

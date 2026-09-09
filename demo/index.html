@@ -7,14 +7,14 @@
     <title>Demo</title>
 
     <meta charset="utf-8">
-    <meta name="description" content="A demo page.">
+    <meta name="description" content="A demonstration.">
     <meta name="author" content="Brooke Kuhlmann">
 
     <link rel="icon" href="https://alchemists.io/favicon.ico" sizes="32x32">
     <link href="/stylesheet.css" rel="stylesheet">
     <link href="/style.css" rel="stylesheet">
 
-    <script src="https://unpkg.com/htmx.org@2.0"></script>
+    <script src="https://unpkg.com/htmx.org@4.0"></script>
     <script src="/htmx-slide.js" defer></script>
   </head>
 
@@ -25,15 +25,10 @@
     </header>
 
     <main class="body">
-      <section class="htmx-slide"
-               hx-ext="slide"
-               hx-select-oob="#slide, #progress, #actions"
-               hx-swap="transition:true">
-
+      <section class="htmx-slide">
         <div class="container">
           <div class="viewport">
-            <img id="slide"
-                 src="one.svg"
+            <img src="one.svg"
                  alt="One"
                  class="slide"
                  width="960"
@@ -42,47 +37,47 @@
                  data-transitions-backward="wipe">
           </div>
 
-          <progress id="progress" class="progress" value="0" max="4"></progress>
+          <progress class="progress" value="0" max="4"></progress>
 
-          <div id="actions" class="actions">
+          <div class="actions">
             <a href="_five.html"
-                class="action"
-                data-direction="backward"
-                hx-get="_five.html"
-                hx-trigger="click, keyup[key=='ArrowLeft'] from:body"
-                hx-push_url="true">
-               Previous
+               class="action"
+               data-direction="backward"
+               hx-get="_five.html"
+               hx-trigger="click, keyup[key=='ArrowLeft'] from:body"
+               hx-push_url="true">
+              Previous
             </a>
 
             <span class="status">1 of 5</span>
 
             <a href="_two.html"
-                class="action"
-                data-direction="forward"
-                hx-get="_two.html"
-                hx-trigger="click, keyup[key=='ArrowRight'] from:body"
-                hx-push_url="true">
-               Next
+               class="action"
+               data-direction="forward"
+               hx-get="_two.html"
+               hx-trigger="click, keyup[key=='ArrowRight'] from:body"
+               hx-push_url="true">
+              Next
             </a>
 
             <a href="_one.html"
-                class="action"
-                data-direction="backward"
-                hx-get="_one.html"
-                hx-trigger="click, keyup[key=='['] from:body"
-                hx-push_url="true">
-               First
+               class="action"
+               data-direction="backward"
+               hx-get="_one.html"
+               hx-trigger="click, keyup[event.code=='BracketLeft'] from:body"
+               hx-push_url="true">
+              First
             </a>
 
             <button data-fullscreen-trigger>[ ]</button>
 
             <a href="_five.html"
-                class="action"
-                data-direction="forward"
-                hx-get="_five.html"
-                hx-trigger="click, keyup[key==']'] from:body"
-                hx-push_url="true">
-               Last
+               class="action"
+               data-direction="forward"
+               hx-get="_five.html"
+               hx-trigger="click, keyup[event.code=='BracketRight'] from:body"
+               hx-push_url="true">
+              Last
             </a>
           </div>
         </div>

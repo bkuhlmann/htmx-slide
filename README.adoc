@@ -15,11 +15,11 @@ toc::[]
 
 == Features
 
-* Allows you to render slides with silky smooth {css_view_transitions_link}.
+* Renders slides with silky smooth {css_view_transitions_link}.
 * Provides customizable slide transitions.
 * Provides full screen toggling of your presentation.
 * Provides keyboard shortcuts.
-* Works with dynamically or statically generated web sites.
+* Works with seamlessly with dynamically or statically generated web sites.
 
 == Screencasts
 
@@ -43,7 +43,7 @@ To load CSS and JavaScript, add the following to your page:
 <link href="https://unpkg.com/htmx-slide@latest/build/style.css" rel="stylesheet">
 
 <script src="https://unpkg.com/htmx-slide@latest"
-        integrity="sha384-fScIyPEy6OzOa5PnWzBtl662obABP840cxSPq0o1LD66Iz6CmreHu/K3kpcKNBut"
+        integrity="sha384-MvtRSkDG+e8xL6AYRZ0gwMH+YcArgl+NdmuYhlidKv7imUDrE4wXIq/PwEYM4EfB"
         crossorigin="anonymous"
         defer>
 </script>
@@ -89,15 +89,10 @@ To use, add a top-level element (`section` in this case) where you enable the `s
 
 [source,html]
 ----
-<section class="htmx-slide"
-         hx-ext="slide"
-         hx-select-oob="#slide, #progress, #actions"
-         hx-swap="transition:true">
-
+<section class="htmx-slide">
   <div class="container">
     <div class="viewport">
-      <img id="slide"
-           src="one.svg"
+      <img src="one.svg"
            alt="One"
            class="slide"
            width="960"
@@ -106,27 +101,27 @@ To use, add a top-level element (`section` in this case) where you enable the `s
            data-transitions-backward="wipe">
     </div>
 
-    <progress id="progress" class="progress" value="0" max="4"></progress>
+    <progress class="progress" value="0" max="4"></progress>
 
-    <div id="actions" class="actions">
+    <div class="actions">
       <a href="_five.html"
-          class="action"
-          data-direction="backward"
-          hx-get="_five.html"
-          hx-trigger="click, keyup[key=='ArrowLeft'] from:body"
-          hx-push_url="true">
-         Previous
+         class="action"
+         data-direction="backward"
+         hx-get="_five.html"
+         hx-trigger="click, keyup[key=='ArrowLeft'] from:body"
+         hx-push_url="true">
+        Previous
       </a>
 
       <span class="status">1 of 5</span>
 
       <a href="_two.html"
-          class="action"
-          data-direction="forward"
-          hx-get="_two.html"
-          hx-trigger="click, keyup[key=='ArrowRight'] from:body"
-          hx-push_url="true">
-         Next
+         class="action"
+         data-direction="forward"
+         hx-get="_two.html"
+         hx-trigger="click, keyup[key=='ArrowRight'] from:body"
+         hx-push_url="true">
+        Next
       </a>
 
       <button data-fullscreen-trigger>[ ]</button>
@@ -137,62 +132,99 @@ To use, add a top-level element (`section` in this case) where you enable the `s
 
 The above is the minimum to load the extension, the initial slide, and navigate between slides. Here's the breakdown:
 
-* `section` (required): The `section` element provides a semantic element to enable the extension and supply the minimum attributes. You're not limited to the `section` element as any valid HTML element would work for your top level element.
-** `class` (optional): Necessary to style the extension. If you don't want to use the default styles then you can remove along with the associated `style.css`. The `style.css` is compiled from the style sheets located in the `lib/stylesheets` of this project. If you need a detailed breakdown on how CSS View Transitions and key frames work, check out the {htmx_view_transitions_link} article to learn more.
-** `hx-ext` (required): Ensures this extension is enabled.
-** `hx-select-oob` (required): Defines which elements should be selected as out of bounds updates when moving forward and backward through your slides since only the slide, progress, and action elements are the only elements that will change per each slide. The values _must_ be IDs, not classes.
-** `hx-swap` (required): Ensures htmx enables CSS View Transitions properly. If missing, no transitions will fire.
+* `section` (required): The `section` element provides a semantic element to encapsulate all functionality and supply the minimum attributes. You're not limited to the `section` element as any valid HTML element would work for your top level element.
+** `class` (optional): Provides a default style for the extension. If you don't want any styling then you can remove along with the associated `style.css`. The `style.css` is compiled from the style sheets located in the `lib/stylesheets` of this project. If you need a detailed breakdown on how CSS View Transitions and key frames work, check out the {htmx_view_transitions_link} article to learn more.
 * `.container` (required): Ensures the view port, progress bar, and associated actions don't expand the width of your slides.
 * `.viewport` (required): Ensures contents of this element can be toggled via the {fullscreen_api_link}.
-* `#slide` (required): Ensures this can be updated (swapped) out of bounds.
-* `#progress` (optional): Provides real-time progress. Delete and remove from `hx-select-oob` if not desired.
-* `#actions` (required): Ensure you can navigate to the previous, next, first, and last slide. You can add or remove actions as desired. The above shows what's possible. When using action links, use the following attributes:
+* `.slide` (required): Ensures your slide can be updated with a new slide based on the direction you are going.
+* `.progress` (optional): Provides real-time progress. Delete if not desired.
+* `.actions` (required): Ensures you can navigate to the previous, next, first, and last slide. You can add or remove actions as desired. The above shows what's possible. When using action links, use the following attributes:
 ** `.action` (optional): Allows you to style the action if desired.
 ** `data-direction` (required): Ensures this extension knows which direction to transition the slide. Valid values are: `forward` or `backward`.
-** `hx-get` (required): Gets the next slide.
+** `hx-get` (required): Requests the next slide.
 ** `hx-trigger`(required): Triggers the action. Feel free to customize keyboard short behavior as desired.
-** `hx-push_url` (optional): Ensures your browser history is updated so browser back and forward navigation works.
-* `data-fullscreen-trigger` (optional): Triggers full screen mode. The value is meant to be empty. If a value is supplied, it'll be ignored. You can, optionally, add a `data-fullscreen-target` with any valid CSS selector in case you want to target a different element for full screen. The default is: `.viewport`.
+** `hx-push_url` (optional): Ensures your browser history is updated so back and forward navigation works.
+* `data-fullscreen-trigger` (optional): Triggers full screen mode. The value is meant to be empty and any value supplied is ignored. You can, optionally, add a `data-fullscreen-target` with any valid CSS selector in case you want to target a different element for full screen. The default is: `.viewport`.
 
-When building your implementation, the above shows the initial page to render. All subsequent pages only need to be HTML fragments/partials which have the elements shown in the `.container` as those are the only elements that need to change upon each HTTP GET request.
+When building your implementation, the above shows the initial page to render. All subsequent pages only need to be HTML partials which have the elements shown in the `.container` as those are the only elements that need to change upon each HTTP GET request.
 
 === Configuration
 
-In addition to the above, you can configure the extension via the following data attributes:
+In addition to the above, you can configure the extension globally or per element. The following details each.
+
+==== Defaults
+
+This extensions is configured with the following defaults:
+
+[source,javascript]
+----
+DEFAULTS = {
+  slide: ".slide",
+  transitions: {
+    forward: "push",
+    backward: "push"
+  },
+  fullscreen: {
+    key: "f",
+    trigger: "[data-fullscreen-trigger]",
+    target: ".viewport"
+  }
+};
+----
+
+Each is key is described as follows:
+
+* `slide`: Defines the slide selector. This can be any valid CSS selector.
+* `transitions`: Defines the transitions.
+** `forward`: Defines the forward transition.
+** `backward`: Defines the backward transition.
+* `fullscreen`: Defines fullscreen behavior.
+** `key`: Defines the keyboard shortcut to toggle full screen mode.
+** `trigger`: Defines the trigger selector of the element that will toggle full screen mode. This can be any valid CSS selector.
+** `target`: Defines the full screen target selector for which will enlarged in full screen mode.
+
+==== Globals
+
+You can override the defaults using link:https://four.htmx.org/docs/hcon-guide[HCON] notation as follows:
 
 [source,html]
 ----
-<section hx-ext="slide"
-         data-slide="#slide"
-         data-transitions-forward="push"
-         data-transitions-backward="push"
-         data-fullscreen-key="f"
-         data-fullscreen-trigger="[data-fullscreen-trigger]">
+<meta name="htmx-config"
+      content="slide.slide:.slide
+               slide.fullscreen.forward:push
+               slide.fullscreen.backward:push
+               slide.fullscreen.key:k
+               slide.fullscreen.trigger:[data-fullscreen-trigger]
+               slide.fullscreen.target:.viewport">
 ----
 
-The above shows the default settings which is why you don't need to supply these when enabling this extension. Should the above defaults not be desired, then you can customize as follows:
+With the above, you'll notice the global configuration is identical to the `DEFAULTS`. This is where you would customize as desired. At the moment, all keys must be represented even if you only customize a few of them.
 
-* `data-slide`: Use any valid CSS selector to target a different slide element.
-* `data-transitions-forward`: The view transition name for forward movement.
-* `data-transitions-backward`: The view transition name for backward movement.
-* `data-fullscreen-key`: The full screen keyboard shortcut.
-* `data-fullscreen-trigger`: The element which triggers the full screen toggle (usually a button).
+==== Elements
 
-You can also override global extension behavior by using the `transitions` data attribute on your slide element. Example (truncated for brevity):
+You can also customize behavior by specific element using `data` attributes. For example, to change transitions, apply the following attributes to your slide (img) element:
 
 [source,html]
 ----
-<img id="slide"
-     data-transitions-forward="iris"
-     data-transitions-backward="wipe">
+data-transitions-forward="push"
+data-transitions-backward="push"
 ----
 
-The above gives you fine level control over the behavior of _each_ slide instead of inheriting the extension's behavior or the global defaults and is a powerful way to keep your presentation interesting with different transitions.
+The above gives you fine level control over the behavior of _each_ slide instead of inheriting the default or global configuration and is a powerful way to keep your presentation interesting with different transitions.
 
-The `+data-transitions-*+` attributes adhere to the following order of precedence (where the first takes highest priority):
+You can also change full screen behavior by editing the element (button) that toggles full screen mode as follows:
 
-1. Slide
-2. Extension
+[source,html]
+----
+data-fullscreen-target=".viewport"
+----
+
+==== Precedence
+
+The configuration is dynamically computed based on global and per element customization with the first in the following list having the most specificity followed by least specificity:
+
+1. Elements
+2. Globals
 3. Defaults
 
 === Keyframes
@@ -218,11 +250,43 @@ You can customize each slide's transition, as mentioned in the _Configuration_ s
 * `data-transitions-forward="iris"`: Uses the _iris_ transition when moving forward to the next slide.
 * `data-transitions-backward="scale"`: Uses the _scale_ transition when moving backward to the next slide.
 
-Each view transition name uses the `+htmx-slide-<name>-forward+` prefix. You can create and use your own transitions by use the same format as long as your name is unique and doesn't conflict with the provided transitions. Once your custom view transition is ready, simply use the name of your transition for the `+data-transitions-*+` attributes to enable.
+Each view transition name uses the `+htmx-slide-<name>-forward+` prefix. You can create and use your own transitions by using the same format as long as your name is unique and doesn't conflict with the provided transitions. Once your custom view transition is ready, use the name of your transition via the `+data-transitions-*+` attributes to enable.
 
-=== Actions
+=== Partials
 
-You are not limited to previous and next actions as shown above as you can add as many as you deem necessary. For example, the following shows how to use previous, next, first, and last actions for navigation.
+All of your partials needs to be wrapped within the link:https://four.htmx.org/reference/tags/hx-partial[hx-partial] tag. You can always add more partials and standard HTML elements as you like but the following detail what is possible:
+
+==== Slide
+
+This is your most critical partial which informs htmx how to swap in and transition your new slide. Use of `transition:true` is important for enabling {css_view_transitions_link}. Example:
+
+[source,html]
+----
+<hx-partial hx-target=".slide" hx-swap="outerHTML transition:true">
+  <img src="one.svg"
+       alt="One"
+       class="slide"
+       width="960"
+       height="540"
+       data-transitions-forward="push"
+       data-transitions-backward="wipe">
+</hx-partial>
+----
+
+==== Progress
+
+As mentioned earlier this is optional but handy for providing a clear visual indication of where you are in your presentation. Example:
+
+[source,html]
+----
+<hx-partial hx-target=".progress" hx-swap="outerHTML">
+  <progress class="progress" value="0" max="4"></progress>
+</hx-partial>
+----
+
+==== Actions
+
+You are not limited to previous and next actions as mentioned earlier because you can add as many as you deem necessary. For example, the following shows how to use previous, next, first, and last actions for navigation.
 
 .With First and Last Actions
 [%collapsible]
@@ -230,55 +294,53 @@ You are not limited to previous and next actions as shown above as you can add a
 
 [source,html]
 ----
-<div id="actions" class="actions">
-  <a href="_five.html"
-      class="action"
-      data-direction="backward"
-      hx-get="_five.html"
-      hx-trigger="click, keyup[key=='ArrowLeft'] from:body"
-      hx-push_url="true">
-     Previous
-  </a>
+<hx-partial hx-target=".actions" hx-swap="outerHTML">
+  <div class="actions">
+    <a href="_five.html"
+       class="action"
+       data-direction="backward"
+       hx-get="_five.html"
+       hx-trigger="click, keyup[key=='ArrowLeft'] from:body"
+       hx-push_url="true">
+      Previous
+    </a>
 
-  <span class="status">1 of 5</span>
+    <span class="status">1 of 5</span>
 
-  <a href="_two.html"
-      class="action"
-      data-direction="forward"
-      hx-get="_two.html"
-      hx-trigger="click, keyup[key=='ArrowRight'] from:body"
-      hx-push_url="true">
-     Next
-  </a>
+    <a href="_two.html"
+       class="action"
+       data-direction="forward"
+       hx-get="_two.html"
+       hx-trigger="click, keyup[key=='ArrowRight'] from:body"
+       hx-push_url="true">
+      Next
+    </a>
 
-  <a href="_one.html"
-      class="action"
-      data-direction="backward"
-      hx-get="_one.html"
-      hx-trigger="click, keyup[key=='['] from:body"
-      hx-push_url="true">
-     First
-  </a>
+    <a href="_one.html"
+       class="action"
+       data-direction="backward"
+       hx-get="_one.html"
+       hx-trigger="click, keyup[event.code=='BracketLeft'] from:body"
+       hx-push_url="true">
+      First
+    </a>
 
-  <button data-fullscreen-trigger>[ ]</button>
+    <button data-fullscreen-trigger>[ ]</button>
 
-  <a href="_five.html"
-      class="action"
-      data-direction="forward"
-      hx-get="_five.html"
-      hx-trigger="click, keyup[key==']'] from:body"
-      hx-push_url="true">
-     Last
-  </a>
-</div>
+    <a href="_five.html"
+       class="action"
+       data-direction="forward"
+       hx-get="_five.html"
+       hx-trigger="click, keyup[event.code=='BracketRight'] from:body"
+       hx-push_url="true">
+      Last
+    </a>
+  </div>
+</hx-partial>
 ----
 ====
 
-As long as your actions are defined within the `#actions` element, this extension will swap them in properly.
-
-=== Fragments
-
-Due to the power of htmx's out-of-bound selects used by this extension, this means your HTML fragments only need to supply the element IDs as defined by your out-of-bound selects. This gives you the freedom to supply a full page, partial page, or exact elements for maximum flexibility when using this extension.
+As long as your actions are defined within the `.actions` element and wrapped within a `hx-partial` element, this extension will swap them in properly.
 
 === Examples
 

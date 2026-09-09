@@ -1,52 +1,57 @@
-<img id="slide"
-     src="two.svg"
-     alt="Two"
-     class="slide"
-     width="960"
-     height="540"
-     data-transitions-forward="curtain"
-     data-transitions-backward="push">
+<hx-partial hx-target=".slide" hx-swap="outerHTML transition:true">
+  <img src="two.svg"
+       alt="Two"
+       class="slide"
+       width="960"
+       height="540"
+       data-transitions-forward="curtain"
+       data-transitions-backward="push">
+</hx-partial>
 
-<progress id="progress" class="progress" value="1" max="4"></progress>
+<hx-partial hx-target=".progress" hx-swap="outerHTML">
+  <progress class="progress" value="1" max="4"></progress>
+</hx-partial>
 
-<div id="actions" class="actions">
-  <a href="_one.html"
-      class="action"
-      data-direction="backward"
-      hx-get="_one.html"
-      hx-trigger="click, keyup[key=='ArrowLeft'] from:body"
-      hx-push_url="true">
-     Previous
-  </a>
+<hx-partial hx-target=".actions" hx-swap="outerHTML">
+  <div class="actions">
+    <a href="_one.html"
+       class="action"
+       data-direction="backward"
+       hx-get="_one.html"
+       hx-trigger="click, keyup[key=='ArrowLeft'] from:body"
+       hx-push_url="true">
+      Previous
+    </a>
 
-  <span class="status">2 of 5</span>
+    <span class="status">2 of 5</span>
 
-  <a href="_three.html"
-      class="action"
-      data-direction="forward"
-      hx-get="_three.html"
-      hx-trigger="click, keyup[key=='ArrowRight'] from:body"
-      hx-push_url="true">
-     Next
-  </a>
+    <a href="_three.html"
+       class="action"
+       data-direction="forward"
+       hx-get="_three.html"
+       hx-trigger="click, keyup[key=='ArrowRight'] from:body"
+       hx-push_url="true">
+      Next
+    </a>
 
-  <a href="_one.html"
-      class="action"
-      data-direction="backward"
-      hx-get="_one.html"
-      hx-trigger="click, keyup[key=='['] from:body"
-      hx-push_url="true">
-     First
-  </a>
+    <a href="_one.html"
+       class="action"
+       data-direction="backward"
+       hx-get="_one.html"
+       hx-trigger="click, keyup[event.code=='BracketLeft'] from:body"
+       hx-push_url="true">
+      First
+    </a>
 
-  <button data-fullscreen-trigger>[ ]</button>
+    <button data-fullscreen-trigger>[ ]</button>
 
-  <a href="_five.html"
-      class="action"
-      data-direction="forward"
-      hx-get="_five.html"
-      hx-trigger="click, keyup[key==']'] from:body"
-      hx-push_url="true">
-     Last
-  </a>
-</div>
+    <a href="_five.html"
+       class="action"
+       data-direction="forward"
+       hx-get="_five.html"
+       hx-trigger="click, keyup[event.code=='BracketRight'] from:body"
+       hx-push_url="true">
+      Last
+    </a>
+  </div>
+</hx-partial>
