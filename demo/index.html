@@ -14,7 +14,7 @@
     <link href="/stylesheet.css" rel="stylesheet">
     <link href="/style.css" rel="stylesheet">
 
-    <script src="https://unpkg.com/htmx.org@2.0"></script>
+    <script src="https://unpkg.com/htmx.org@4.0"></script>
     <script src="/htmx-slide.js" defer></script>
   </head>
 
@@ -28,7 +28,7 @@
       <section class="htmx-slide"
                hx-ext="slide"
                hx-select-oob="#slide, #progress, #actions"
-               hx-swap="transition:true">
+               hx-swap:inherited="transition:true">
 
         <div class="container">
           <div class="viewport">

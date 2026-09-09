@@ -90,7 +90,6 @@ To use, add a top-level element (`section` in this case) where you enable the `s
 [source,html]
 ----
 <section class="htmx-slide"
-         hx-ext="slide"
          hx-select-oob="#slide, #progress, #actions"
          hx-swap="transition:true">
 
@@ -163,7 +162,6 @@ In addition to the above, you can configure the extension via the following data
 [source,html]
 ----
 <section hx-ext="slide"
-         data-slide="#slide"
          data-transitions-forward="push"
          data-transitions-backward="push"
          data-fullscreen-key="f"
