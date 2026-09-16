@@ -44,7 +44,7 @@
                class="action"
                data-direction="backward"
                hx-get="_five.html"
-               hx-trigger="click, keyup[key=='ArrowLeft'] from:body"
+               hx-trigger="click, keyup[key == 'ArrowLeft'] from:body"
                hx-push_url="true">
               Previous
             </a>
@@ -55,7 +55,7 @@
                class="action"
                data-direction="forward"
                hx-get="_two.html"
-               hx-trigger="click, keyup[key=='ArrowRight'] from:body"
+               hx-trigger="click, keyup[key == 'ArrowRight'] from:body"
                hx-push_url="true">
               Next
             </a>
@@ -64,7 +64,7 @@
                class="action"
                data-direction="backward"
                hx-get="_one.html"
-               hx-trigger="click, keyup[event.code=='BracketLeft'] from:body"
+               hx-trigger="click, keyup[event.code == 'BracketLeft'] from:body"
                hx-push_url="true">
               First
             </a>
@@ -75,7 +75,7 @@
                class="action"
                data-direction="forward"
                hx-get="_five.html"
-               hx-trigger="click, keyup[event.code=='BracketRight'] from:body"
+               hx-trigger="click, keyup[event.code == 'BracketRight'] from:body"
                hx-push_url="true">
               Last
             </a>
